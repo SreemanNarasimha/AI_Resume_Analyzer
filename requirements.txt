@@ -1,12 +1,9 @@
 streamlit
-spacy
+spacy>=3.7.0
 sentence-transformers
 plotly
 pymupdf
 python-docx
-scikit-learn
 pandas
 numpy
-beautifulsoup4
-requests
-en_core_web_md @ https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.7.1/en_core_web_md-3.7.1-py3-none-any.whl
+https://github.com/explosion/spacy-models/releases/download/en_core_web_md-3.8.0/en_core_web_md-3.8.0-py3-none-any.whl

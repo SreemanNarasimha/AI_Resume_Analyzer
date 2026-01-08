@@ -1,23 +1,17 @@
 import spacy
-import subprocess
-import sys
 from sentence_transformers import SentenceTransformer, util
-from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-# --- Model Loading & Management ---
-@staticmethod
-def load_spacy_model(model_name="en_core_web_md"):
-    try:
-        nlp = spacy.load(model_name)
-    except OSError:
-        print(f"Downloading {model_name}...")
-        subprocess.check_call([sys.executable, "-m", "spacy", "download", model_name])
-        nlp = spacy.load(model_name)
-    return nlp
+# Load models simply. 
+# Streamlit will have pre-installed these from requirements.txt
+try:
+    NLP_SPACY = spacy.load("en_core_web_md")
+except OSError:
+    # Fallback for local development if you haven't downloaded it yet
+    import os
+    os.system("python -m spacy download en_core_web_md")
+    NLP_SPACY = spacy.load("en_core_web_md")
 
-# Cache models to avoid reloading on every interaction
-NLP_SPACY = load_spacy_model()
 NLP_BERT = SentenceTransformer('all-MiniLM-L6-v2')
 
 # --- Predefined Keyword Dictionary ---
